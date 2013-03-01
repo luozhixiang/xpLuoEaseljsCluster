@@ -14,6 +14,7 @@ var smr = smr || {};
 	EaseljsClusterChart.prototype.postDisplay = function(data, config) {
 		var view = this;
 		var $e = view.$el;
+		view.eventLable = $e.find(".event-label")
 		data = data || {};
 		data.children = [];
 		
@@ -30,6 +31,12 @@ var smr = smr || {};
 					
 		var bg = new createjs.Shape();
 		stage.addChild(bg);
+		
+		var label = new createjs.Text("Click the node ,show the weight on the right!", "bold 10px Arial", "#444");
+		label.textAlign = "center";
+		label.x = canvas.width/2;
+		label.y = 40;
+		stage.addChild(label);
 		
 		//draw the center point
 		var centerPoint = new createjs.Graphics()
@@ -48,18 +55,31 @@ var smr = smr || {};
 			
 			console.log("angle:"+angle +"---sin:"+Math.sin(angle*(Math.PI/180))+"---cos:"+Math.cos(angle*(Math.PI/180)));
 			
+			var container = new createjs.Container();
+			container.x = ponint.x;
+			container.y = ponint.y;
+			container.name = item.name;
+			container.weight = item.weight;
+			
 			//draw the node
 			var node = new createjs.Shape();
 			node.graphics.beginFill("rgba(255,102,0,0.75)")
-			                    .drawCircle(ponint.x, ponint.y, 2)
+			                    .drawCircle(0, 0, 2)
 			                    .closePath();
+			container.addChild(node);
+			
+			//add the click event for node
+			container.addEventListener("click",function(evt){
+				var html = hrender("tmpl-EaseljsClusterChart-event-label",evt.target);
+				view.eventLable.html(html);
+			});
 			
 			//draw the line 
 			bg.graphics.beginStroke(i%2 ? "#333" : "#444")
 					   .moveTo(400,400)
 					   .lineTo(ponint.x,ponint.y);
 			
-			stage.addChild(node);
+			stage.addChild(container);
 		});
 			
 		stage.update();
