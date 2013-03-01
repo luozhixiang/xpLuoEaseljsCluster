@@ -17,7 +17,7 @@ var smr = smr || {};
 		data = data || {};
 		data.children = [];
 		
-		//generate some random data ,300 node , the weight is between 20 and 50
+		//generate some random data , 300 node , the weight is between 20 and 50
 		for(var i=100; i< 400 ;i++){
 			var weight = fRandomBy(20,50);
 			data.children.push({"name": "User"+i,"weight":weight});
@@ -42,6 +42,8 @@ var smr = smr || {};
 		$.each(data.children,function(i,item){
 			var angle = (360/data.children.length)*(Math.PI/180)*i;
 			var lineLength = (item.weight/50) * 350;
+			
+			//calculate the node position of circle center 
 			var ponint = {x:400+ (Math.cos(angle)*lineLength),y:400 + (Math.sin(angle)*lineLength)};
 			
 			console.log("angle:"+angle +"---sin:"+Math.sin(angle*(Math.PI/180))+"---cos:"+Math.cos(angle*(Math.PI/180)));
@@ -51,6 +53,11 @@ var smr = smr || {};
 			node.graphics.beginFill("rgba(255,102,0,0.75)")
 			                    .drawCircle(ponint.x, ponint.y, 2)
 			                    .closePath();
+			
+			//draw the line 
+			bg.graphics.beginStroke(i%2 ? "#333" : "#444")
+					   .moveTo(400,400)
+					   .lineTo(ponint.x,ponint.y);
 			
 			stage.addChild(node);
 		});
