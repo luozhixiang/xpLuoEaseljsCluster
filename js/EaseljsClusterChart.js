@@ -16,11 +16,14 @@ var smr = smr || {};
 		var $e = view.$el;
 		data = data || {};
 		data.children = [];
+		
+		//generate some random data ,300 node , the weight is between 20 and 50
 		for(var i=100; i< 400 ;i++){
 			var weight = fRandomBy(20,50);
-			console.log("---------------weight:"+weight );
 			data.children.push({"name": "User"+i,"weight":weight});
 		}
+		//sort the data by weight
+		data.children.sort(weightSort);
 		
 		var canvas = $e.find("canvas").get(0);
 		var stage = new createjs.Stage(canvas);
@@ -28,21 +31,28 @@ var smr = smr || {};
 		var bg = new createjs.Shape();
 		stage.addChild(bg);
 		
-		var circlePoint = new createjs.Shape();
-		circlePoint.graphics.beginFill("rgba(255,102,0,0.75)")
-				            .drawCircle(400 , 400 , 10)
-				            .closePath();
-		stage.addChild(circlePoint);
+		//draw the center point
+		var centerPoint = new createjs.Graphics()
+									  .beginRadialGradientFill(["rgba(255,255,255,1)", "rgba(0,0,0,1)"], [0, 1], 400, 400, 5, 400, 400, 10)
+									  .drawCircle(400, 400, 10)
+									  .closePath();
+		var shape = new createjs.Shape(centerPoint);
+		stage.addChild(shape);
 		
 		$.each(data.children,function(i,item){
 			var angle = (360/data.children.length)*(Math.PI/180)*i;
+			var lineLength = (item.weight/50) * 350;
+			var ponint = {x:400+ (Math.cos(angle)*lineLength),y:400 + (Math.sin(angle)*lineLength)};
 			
 			console.log("angle:"+angle +"---sin:"+Math.sin(angle*(Math.PI/180))+"---cos:"+Math.cos(angle*(Math.PI/180)));
 			
-			circlePoint.graphics.beginFill("rgba(255,102,0,0.75)")
-			                    .drawCircle(400+ (Math.cos(angle)*350), 400 + (Math.sin(angle)*350) , 2)
+			//draw the node
+			var node = new createjs.Shape();
+			node.graphics.beginFill("rgba(255,102,0,0.75)")
+			                    .drawCircle(ponint.x, ponint.y, 2)
 			                    .closePath();
-			stage.addChild(circlePoint);
+			
+			stage.addChild(node);
 		});
 			
 		stage.update();
@@ -58,6 +68,10 @@ var smr = smr || {};
 			default: return 0; 
 		} 
 	} 
+	
+	function weightSort(a,b){
+		return a.weight>b.weight ? 1 :-1;
+	}
 	// --------- /Private Method --------- //
 	
 	// --------- Component Registration --------- //
