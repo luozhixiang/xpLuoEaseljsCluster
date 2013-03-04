@@ -40,8 +40,8 @@ var smr = smr || {};
 		
 		//draw the center point
 		var centerPoint = new createjs.Graphics()
-									  .beginRadialGradientFill(["rgba(255,255,255,1)", "rgba(0,0,0,1)"], [0, 1], 400, 400, 5, 400, 400, 10)
-									  .drawCircle(400, 400, 10)
+									  .beginRadialGradientFill(["#E2EB9B", "#006400"], [0.2, 1], 400, 400, 1, 400, 400, 20)
+									  .drawCircle(400, 400, 20)
 									  .closePath();
 		var shape = new createjs.Shape(centerPoint);
 		stage.addChild(shape);
