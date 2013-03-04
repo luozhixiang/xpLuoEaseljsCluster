@@ -32,7 +32,7 @@ var smr = smr || {};
 		var bg = new createjs.Shape();
 		stage.addChild(bg);
 		
-		var label = new createjs.Text("Click the node ,show the weight on the right!", "bold 10px Arial", "#444");
+		var label = new createjs.Text("Click the node to show the weight on the right!", "bold 10px Arial", "#444");
 		label.textAlign = "center";
 		label.x = canvas.width/2;
 		label.y = 40;
@@ -78,6 +78,38 @@ var smr = smr || {};
 			bg.graphics.beginStroke(i%2 ? "#333" : "#444")
 					   .moveTo(400,400)
 					   .lineTo(ponint.x,ponint.y);
+			
+			if(i==0 || (i+1)%10==0){
+				var text = new createjs.Text(item.name, "10px Arial", "#777");
+				var mx = 0;
+				var my = 0;
+				var ang = (360/data.children.length)*i;
+				if(ang <= 45){
+					mx = 2;
+					my = 0;
+				}else if(ang > 45 && ang <= 90){
+					mx = 2;
+					my = 5;
+				}else if(ang > 90 && ang <= 180){
+					mx = -50;
+					my = 5;
+				}else if(ang > 180 && ang <= 225){
+					mx = -50;
+					my = -5;
+				}else if(ang > 225 && ang <= 270){
+					mx = -50;
+					my = -15;
+				}else if(ang > 270 && ang <= 315){
+					mx = 10;
+					my = -20;
+				}else if(ang > 315 && ang < 360){
+					mx = 10;
+					my = -10;
+				}
+				text.x = ponint.x + mx;
+				text.y = ponint.y + my;
+				stage.addChild(text);
+			}
 			
 			stage.addChild(container);
 		});
