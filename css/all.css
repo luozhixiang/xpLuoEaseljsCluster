@@ -63,4 +63,76 @@ body {
   margin-top: 350px;
   font-weight: bold;
 }
+.EaseljsPieChart {
+  background-color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  overflow: auto;
+}
+.EaseljsPieChart canvas {
+  float: left;
+}
+.EaseljsPieChart .EaseljsPieChart-table {
+  float: left;
+  margin-top: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.EaseljsPieChart .pie-dataShow {
+  width: 440px;
+  margin: auto;
+  border-collapse: collapse;
+}
+.EaseljsPieChart .pie-dataShow th {
+  width: 90px;
+  height: 30px;
+  padding: 0px 8px 0px 8px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: bolder;
+  background: #EDEDED;
+  border: 1px solid #C6C6C6;
+}
+.EaseljsPieChart .pie-dataShow th.index {
+  width: 50px;
+}
+.EaseljsPieChart .pie-dataShow th .ico {
+  float: right;
+  background-image: none;
+  height: 16px;
+  width: 16px;
+  margin-top: 7px;
+}
+.EaseljsPieChart .pie-dataShow th.name-label {
+  width: 120px;
+}
+.EaseljsPieChart .pie-dataShow td {
+  height: 20px;
+  font-weight: normal;
+  text-align: right;
+  padding: 4px 12px 4px 8px;
+  border: 1px solid #C6C6C6;
+}
+.EaseljsPieChart .pie-dataShow td.textAlignLeft {
+  text-align: left;
+}
+.EaseljsPieChart .pie-dataShow td .indexNum {
+  float: left;
+}
+.EaseljsPieChart .pie-dataShow td .indexParColor {
+  height: 4px;
+  width: 8px;
+  border: 1px solid #3a3c36;
+  margin-left: 10px;
+  padding: 4px 0 4px 8px;
+  float: left;
+}
+.EaseljsPieChart .pie-dataShow td.noBottomBorder {
+  border-bottom: 0px;
+}
+.EaseljsPieChart .pie-dataShow .sel {
+  background: #a7dee5;
+  background: -moz-linear-gradient(top, #d3eff3, #a7dee5);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d3eff3), to(#a7dee5));
+}
 

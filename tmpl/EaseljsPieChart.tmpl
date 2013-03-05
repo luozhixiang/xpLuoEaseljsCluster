@@ -1,0 +1,34 @@
+<script id="tmpl-EaseljsPieChart" type="text/html">
+	<div class="EaseljsPieChart">
+	  	<div class="EaseljsPieChart-table">
+			<table class="dataTable pie-dataShow">
+				<thead>
+					<tr>
+						<th class="legend-label">Legend</th>
+						<th class="name-label">Name</th>
+						<th class="value-label">Value</th>
+						<th class="percent-label">%</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+		<canvas id="EaseljsPieChart" width="800" height="800"></canvas>
+	</div>
+</script>
+
+<script id="tmpl-EaseljsPieChart-dataTable-tableTbody" type="text/html">
+	{{#each data}}
+		<tr>
+			<td>
+				<div class="indexNum" data-target="target1">{{index}}</div>
+				<div class="indexParColor" style="background:{{color}}"></div> 
+			</td>
+			<td>{{name}}</td>
+			<td>{{value}}</td>
+			<td>{{percent}}%</td>
+		</tr>
+	{{/each}}
+</script>

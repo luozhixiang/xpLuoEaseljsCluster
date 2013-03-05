@@ -38,6 +38,10 @@ var smr = smr || {};
 		label.y = 40;
 		stage.addChild(label);
 		
+		var arcs = new createjs.Graphics().beginFill("#E2EB9B").arc(100, 100, 20, 0, Math.PI);
+		var shapearc = new createjs.Shape(arcs);
+		stage.addChild(shapearc);
+		
 		//draw the center point
 		var centerPoint = new createjs.Graphics()
 									  .beginRadialGradientFill(["#E2EB9B", "#006400"], [0.2, 1], 400, 400, 1, 400, 400, 20)
