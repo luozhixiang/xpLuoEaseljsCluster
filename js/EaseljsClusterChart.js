@@ -19,7 +19,7 @@ var smr = smr || {};
 		data.children = [];
 		
 		//generate some random data , 300 node , the weight is between 20 and 50
-		for(var i=100; i< 400 ;i++){
+		for(var i=100; i< 130 ;i++){
 			var weight = fRandomBy(20,50);
 			data.children.push({"name": "User"+i,"weight":weight});
 		}
@@ -28,6 +28,7 @@ var smr = smr || {};
 		
 		var canvas = $e.find("canvas").get(0);
 		var stage = new createjs.Stage(canvas);
+			stage.enableMouseOver(20);
 					
 		var bg = new createjs.Shape();
 		stage.addChild(bg);
@@ -37,10 +38,6 @@ var smr = smr || {};
 		label.x = canvas.width/2;
 		label.y = 40;
 		stage.addChild(label);
-		
-		var arcs = new createjs.Graphics().beginFill("#E2EB9B").arc(100, 100, 20, 0, Math.PI);
-		var shapearc = new createjs.Shape(arcs);
-		stage.addChild(shapearc);
 		
 		//draw the center point
 		var centerPoint = new createjs.Graphics()
@@ -68,12 +65,12 @@ var smr = smr || {};
 			//draw the node
 			var node = new createjs.Shape();
 			node.graphics.beginFill("rgba(255,102,0,0.75)")
-			                    .drawCircle(0, 0, 2)
+			                    .drawCircle(0, 0, 6)
 			                    .closePath();
 			container.addChild(node);
 			
 			//add the click event for node
-			container.addEventListener("click",function(evt){
+			container.addEventListener("mouseover",function(evt){
 				var html = hrender("tmpl-EaseljsClusterChart-event-label",evt.target);
 				view.eventLable.html(html);
 			});
